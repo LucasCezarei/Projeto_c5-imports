@@ -1,0 +1,41 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+    <h1 class="text-center">Cadastrar roupas para adoção</h1>
+    <br>
+    <form enctype="multipart/form-data" action="submit", method="POST">{% csrf_token %}
+        <div class="container">
+            <input type="number" class="form-control" name="roupas_id" value="{{ roupas.id }}" hidden>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" value="{{ roupas.email }}">
+            </div>
+            <div class="form-group">
+                <label for="telefon">Telefone:</label>
+                <input type="tel" class="form-control" name="telefone" value="{{ roupas.telefone }}">
+            </div>   
+            <div class="form-group">
+                <label for="marca">Marca:</label>
+                <input type="text" class="form-control" name="marca" value="{{ roupas.marca }}">
+            </div>    
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea class="form-control" rows="5" name="descricao">{{ roupas.descricao }}</textarea>
+            </div>        
+            <div class="form-group">
+                <a href="/media/{{ roupas.photo }}" target="_blank">Foto atual</a>
+                <input type="file" class="form-control-file border" name="file" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                {% if roupas %}
+                    Alterar
+                {% else %}
+                    Cadastrar
+                {% endif %}
+            </button>
+        </div>
+      </form>
+      <br>
+
+
+{% endblock %}
